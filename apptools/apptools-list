@@ -1,0 +1,8 @@
+#!/bin/bash
+
+THIS=$(basename $0)
+
+for i in ${THIS}/cif/*.cif do;
+    # for now just list them - but nice to have a regex to give name / version
+    echo $i
+done

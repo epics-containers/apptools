@@ -1,0 +1,16 @@
+#%Module1.0
+##
+## AppTools - Apptainer tool launcher
+##
+module-whatis "Apptainer Tool launcher"
+
+proc ModulesHelp { } {
+    global version
+    puts stderr "\enables cacheing and running of any containerised tool"
+}
+
+prepend-path PATH "/dls_sw/apps/apptools"
+
+if { [ module-info mode load ] } {
+  puts stderr "\tEnabled AppTools.\n\trun apptools-list to see available tools"
+}
