@@ -37,10 +37,23 @@ dls-pmac-control --help
 - add a file in ./apptools/apptools with the name of your project
 - chmod +x your project file
 - add the following contents into the file (example is dls-pmac-control)
+- you can pass args to apptainer via ARGS
+- you can pass args to the command at the end of the command line
+- use "${@}" to pass extra args at runtime invocation
 
+
+### example for dls-pmac-control
+```
+#!/bin/bash
+export ARGS="-e" # remove environment so Qt does not try to contact DBus
+apptools-launch ghcr.io/diamondlightsource dls-pmac-control 3.2.0b1 ENTRYPOINT_COMMAND "${@}"
+```
+
+### example for ubuntu bash shell
 ```
 #!/bin/bash
 
-apptools-launch ghcr.io/diamondlightsource dls-pmac-control 3.2.0b1 "${@}"
-```
+# bash args: don't run the host's bashrc
+apptools-launch docker.io/library ubuntu latest bash --noprofile  --norc "${@}"
 
+```

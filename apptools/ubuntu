@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# don't run the hosts bashrc
+# bash args: don't run the host's bashrc
 apptools-launch docker.io/library ubuntu latest bash --noprofile  --norc "${@}"
