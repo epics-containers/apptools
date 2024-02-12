@@ -34,15 +34,16 @@ else
 fi
 
 # add mounts for all available useful folders
-mounts="/tmp"
+mounts="/tmp:/tmp:rw"
 for i in /home /scratch /dls /dls_sw; do
     if [[ -d ${i} ]] ; then
         mounts=${mounts},${i}:${i}:rw
     fi
 done
 
-opts="-e --env DISPLAY=${DISPLAY}"
+opts="--env DISPLAY=${DISPLAY}"
+opts=${opts}" ${ARGS}"
 
 set -x
-apptainer exec ${ARGS} -B ${mounts} ${opts} ${sif_name} ${command} "${@}"
+apptainer exec -B ${mounts} ${opts} ${sif_name} ${command} "${@}"
 
