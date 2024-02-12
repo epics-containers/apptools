@@ -19,8 +19,9 @@ if [[ ! -d ${THIS} ]] ; then
     mkdir ${sif_folder}
 fi
 
-sif_name=sif/$2:$3.sif
+sif_name=${THIS}/sif/$2:$3.sif
 oci_name=$1/$2:$3
+shift 3
 
 # get the sif if it does not exist
 if [[ ! -f ${sif_name} ]]; then
@@ -40,4 +41,5 @@ done
 
 opts="-e --env DISPLAY=${DISPLAY}"
 
-apptainer run -B ${mounts} ${opts} ${sif_name}
+set -x
+apptainer run -B ${mounts} ${opts} ${sif_name} "${@}"

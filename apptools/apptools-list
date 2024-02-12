@@ -2,8 +2,6 @@
 
 THIS="$(dirname "$(readlink -f "$0")")"
 
-
-
 for i in ${THIS}/sif/*.sif; do
     # for now just list them - but nice to have a regex to give name / version
     echo $i

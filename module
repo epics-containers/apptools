@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# cheesey way to make a private module out of ../modulefiles/apptools
+# cheesey way to make a private module out of 'modulefiles/apptools'
 # in future this would just be deployed to /dls_sw/Apps/Modules
 
 THIS="$(dirname "$(readlink -f "$0")")"
