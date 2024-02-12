@@ -4,10 +4,11 @@
 # in future this would just be deployed to /dls_sw/Apps/Modules
 
 THIS="$(dirname "$(readlink -f "$0")")"
+APPTOOLS=$(realpath ${THIS}/apptools)
 
 mkdir -p ${HOME}/privatemodules/apptools
-cp ${THIS}/../modulefiles/apptools/master ${HOME}/privatemodules/apptools
+cp ${THIS}/modulefiles/apptools/master ${HOME}/privatemodules/apptools
 
-sed -i ${HOME}/privatemodules/apptools/master -e "s|\/dls_sw\/apps\/apptools|${THIS}|"
+sed -i ${HOME}/privatemodules/apptools/master -e "s|\/dls_sw\/apps\/apptools|${APPTOOLS}|"
 
 # now you should be able to type 'module load apptools'
