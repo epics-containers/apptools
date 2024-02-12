@@ -4,6 +4,7 @@
 #   $1 = oci: registry
 #   $2 = name of command
 #   $3 = version tag
+#   $4 = command to run
 # ARGS = extra args to pass to apptainer
 # ${@} = remaining args to pass to the command
 
@@ -21,7 +22,8 @@ fi
 
 sif_name=${THIS}/sif/$2:$3.sif
 oci_name=$1/$2:$3
-shift 3
+command=$4
+shift 4
 
 # get the sif if it does not exist
 if [[ ! -f ${sif_name} ]]; then
@@ -32,14 +34,15 @@ else
 fi
 
 # add mounts for all available useful folders
-mounts=/home
-for i in /scratch /dls /dls_sw ; do
+mounts="/tmp"
+for i in /home /scratch /dls /dls_sw; do
     if [[ -d ${i} ]] ; then
-        mounts=${mounts},${i}
+        mounts=${mounts},${i}:${i}:rw
     fi
 done
 
 opts="-e --env DISPLAY=${DISPLAY}"
 
 set -x
-apptainer run -B ${mounts} ${opts} ${sif_name} "${@}"
+apptainer exec ${ARGS} -B ${mounts} ${opts} ${sif_name} ${command} "${@}"
+

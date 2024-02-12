@@ -1,0 +1,3 @@
+#!/bin/bash
+
+apptools-launch docker.io/library ubuntu latest bash "${@}"
