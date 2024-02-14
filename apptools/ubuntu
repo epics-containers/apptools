@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# bash args: don't run the host's bashrc
-apptools-launch docker.io/library ubuntu latest bash --noprofile  --norc "${@}"
+# NOTE: bash args: don't run the host's bashrc which will not work inside the container
+apptools-launch docker.io/library ubuntu latest bash --noprofile --norc "${@}"

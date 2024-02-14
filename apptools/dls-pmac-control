@@ -1,3 +1,5 @@
 #!/bin/bash
+
+# use -e to drop the environment otherwise Qt will try to interact with DBus
 export ARGS="-e"
 apptools-launch ghcr.io/diamondlightsource dls-pmac-control 3.2.0b1 dls-pmac-control "${@}"
